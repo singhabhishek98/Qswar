@@ -1,6 +1,6 @@
 import { Code, Smartphone, Cloud, Shield, Brain, BarChart3, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 
-const ViewServices = () => {
+const ServicesPage = () => {
   const services = [
     {
       icon: <Code className="w-12 h-12" />,
@@ -48,7 +48,6 @@ const ViewServices = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Hero Section */}
       <div className="relative overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:60px_60px]"></div>
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"></div>
@@ -70,7 +69,6 @@ const ViewServices = () => {
         </div>
       </div>
 
-      {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
@@ -78,7 +76,6 @@ const ViewServices = () => {
               key={index}
               className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20"
             >
-              {/* Gradient Border Effect */}
               <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 rounded-2xl blur-xl transition-opacity duration-500`}></div>
               
               <div className="relative z-10">
@@ -115,7 +112,6 @@ const ViewServices = () => {
         </div>
       </div>
 
-      {/* CTA Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
         <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl p-12 text-center overflow-hidden">
           <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:30px_30px]"></div>
@@ -132,4 +128,4 @@ const ViewServices = () => {
   );
 };
 
-export default ViewServices;
+export default ServicesPage;
