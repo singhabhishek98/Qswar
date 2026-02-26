@@ -11,7 +11,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-purple-600 pt-24 sm:pt-32 px-4 sm:px-8 relative overflow-hidden">
+    <section id="home" className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-600 pt-24 sm:pt-32 px-4 sm:px-8 relative overflow-hidden">
       <div className="absolute w-96 h-96 sm:w-125 sm:h-125 bg-purple-600/30 rounded-full blur-3xl -top-20 -right-20"></div>
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 sm:gap-16 items-center relative z-10">
         <div>
@@ -22,7 +22,7 @@ export default function Hero() {
             Smart software solutions built for scalability and performance.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button onClick={scrollToContact} className="bg-linear-to-r from-blue-800 to-purple-600 text-white px-7 py-3 rounded-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all">
+            <button onClick={scrollToContact} className="bg-gradient-to-r from-blue-800 to-purple-600 text-white px-7 py-3 rounded-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all">
               Get Started
             </button>
             <button onClick={() => navigate('/services')} className="border-2 border-white text-white px-7 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-all">

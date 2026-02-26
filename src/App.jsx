@@ -1,41 +1,27 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from './layout/Layout'
-import Hero from './components/Hero'
-import About from './components/About'
-import Services from './components/Services'
-import WhyChoose from './components/WhyChoose'
-import Projects from './components/Projects'
-import Testimonials from './components/Testimonials'
-import Contact from './components/Contact'
-import ViewServices from './Pages/ViewServices'
-import ProjectsPage from './Pages/ProjectsPage'
-import HealthcareApp from './Pages/Projects/HealthcareApp'
-import ECommercePlatform from './Pages/Projects/E-CommercePlatform'
-import BankingDashboard from './Pages/Projects/BankingDashboard'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Layout from './components/layout/Layout'
+import Home from './pages/Home'
+import ServicesPage from './pages/Services'
+import ProjectsPage from './pages/Projects'
+import AdminLogin from './admin/AdminLogin'
+import Dashboard from './admin/Dashboard'
+import AdminProjects from './admin/AdminProjects'
+import AdminMessages from './admin/AdminMessages'
+import ProtectedRoute from './auth/ProtectedRoute'
 
 export default function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <About />
-              <Services />
-              <WhyChoose />
-              <Projects />
-              <Testimonials />
-              <Contact />
-            </>
-          } />
-          <Route path="/services" element={<ViewServices />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/projects/healthcare-app" element={<HealthcareApp />} />
-          <Route path="/projects/ecommerce-platform" element={<ECommercePlatform />} />
-          <Route path="/projects/banking-dashboard" element={<BankingDashboard />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/login" element={<Navigate to="/admin/login" replace />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/admin/projects" element={<ProtectedRoute><AdminProjects /></ProtectedRoute>} />
+        <Route path="/admin/messages" element={<ProtectedRoute><AdminMessages /></ProtectedRoute>} />
+        <Route path="/" element={<Layout><Home /></Layout>} />
+        <Route path="/services" element={<Layout><ServicesPage /></Layout>} />
+        <Route path="/projects" element={<Layout><ProjectsPage /></Layout>} />
+      </Routes>
     </Router>
   )
 }
