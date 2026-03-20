@@ -15,7 +15,7 @@ const AdminMessages = () => {
   const fetchMessages = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/messages', {
+      const response = await fetch('https://qswar-admin-api-s-production.up.railway.app/api/admin/submission', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -108,21 +108,31 @@ const AdminMessages = () => {
                             <FaUser className="h-4 w-4 text-gray-600" />
                           </div>
                         </div>
-                        <div>
+                        <div className="flex-1">
                           <h3 className="text-sm font-medium text-gray-900">{msg.name}</h3>
-                          <div className="flex items-center space-x-2 text-xs text-gray-500">
-                            <FaEnvelope className="h-3 w-3" />
-                            <span>{msg.email}</span>
-                            <span>•</span>
-                            <FaClock className="h-3 w-3" />
-                            <span>{new Date(msg.createdAt).toLocaleDateString()}</span>
+                          <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                            <div className="flex items-center space-x-1">
+                              <FaEnvelope className="h-3 w-3" />
+                              <span>{msg.email}</span>
+                            </div>
+                            {msg.contact && (
+                              <>
+                                <span>•</span>
+                                <span>📞 {msg.contact}</span>
+                              </>
+                            )}
+                            {/* <span>•</span> */}
+                            {/* <div className="flex items-center space-x-1">
+                              <FaClock className="h-3 w-3" />
+                              <span>{new Date(msg.createdAt).toLocaleDateString()}</span>
+                            </div> */}
                           </div>
                         </div>
                       </div>
-                      <p className="text-gray-800 text-sm leading-relaxed">{msg.message}</p>
+                      <p className="text-gray-800 text-sm leading-relaxed mt-2">{msg.message}</p>
                     </div>
                     <div className="flex items-center space-x-2 ml-4">
-                      {!msg.isRead && (
+                      {/* {!msg.isRead && (
                         <button
                           onClick={() => markAsRead(msg._id)}
                           className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors"
@@ -130,10 +140,10 @@ const AdminMessages = () => {
                           <FaEye className="h-3 w-3 mr-1" />
                           Mark as read
                         </button>
-                      )}
-                      {!msg.isRead && (
+                      )} */}
+                      {/* {!msg.isRead && (
                         <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>

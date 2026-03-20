@@ -6,12 +6,21 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [loginMessage, setLoginMessage] = useState('');
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
       setUser(JSON.parse(userData));
     }
+    
+    // Get and display login message
+    const message = localStorage.getItem('loginMessage');
+    if (message) {
+      setLoginMessage(message);
+      localStorage.removeItem('loginMessage');
+    }
+    
     fetchUnreadCount();
     
     // Refresh count every 30 seconds
@@ -22,7 +31,7 @@ const Dashboard = () => {
   const fetchUnreadCount = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/messages', {
+      const response = await fetch('https://qswar-admin-api-s-production.up.railway.app/api/admin/submission', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -52,7 +61,7 @@ const Dashboard = () => {
             <div className="flex items-center space-x-4">
               <div className="relative">
                 <button 
-                  onClick={() => navigate('/admin/messages')}
+                  onClick={() => navigate('/admin/submission')}
                   className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
                 >
                   <FaBell className="w-5 h-5" />
@@ -75,6 +84,31 @@ const Dashboard = () => {
         </div>
       </nav>
 
+      {loginMessage && (
+        <div className="bg-green-50 border-l-4 border-green-500 p-4 mx-4 mt-4 rounded-r-lg">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm font-medium text-green-800">{loginMessage}</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setLoginMessage('')}
+              className="text-green-500 hover:text-green-700"
+            >
+              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div 
@@ -94,7 +128,7 @@ const Dashboard = () => {
           
           <div 
             className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer group relative"
-            onClick={() => navigate('/admin/messages')}
+            onClick={() => navigate('/admin/submission')}
           >
             <div className="flex items-center">
               <div className="flex-shrink-0 relative">
