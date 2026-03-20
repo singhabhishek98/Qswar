@@ -22,8 +22,12 @@ const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return { data: await response.json() };
+      const responseData = await response.json();
+      if (!response.ok) {
+        console.error('API Error:', responseData);
+        throw new Error(responseData.message || `HTTP ${response.status}`);
+      }
+      return { data: responseData };
     } catch (error) {
       console.error('POST Error:', error);
       throw error;
@@ -32,7 +36,7 @@ const api = {
   
   async adminLogin(data) {
     return this.post('/api/admin/login', {
-      Admin_userName: data.email,
+      Admin_email: data.email,
       Admin_password: data.password
     });
   },

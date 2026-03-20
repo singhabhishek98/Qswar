@@ -34,9 +34,11 @@ export default function Header() {
           <a href="#services" className="hidden md:inline text-gray-600 hover:text-purple-600 font-medium transition">Services</a>
           <a href="#projects" className="hidden md:inline text-gray-600 hover:text-purple-600 font-medium transition">Projects</a>
           <button onClick={handleContactClick} className="hidden md:inline text-gray-600 hover:text-purple-600 font-medium transition bg-transparent border-none cursor-pointer">Contact</button>
-          <button className="bg-gradient-to-r from-blue-800 to-purple-600 text-white px-4 sm:px-7 py-2 sm:py-3 rounded-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all">
-            Get Started
-          </button>
+          <Link to="/leave/login">
+            <button className="bg-gradient-to-r from-blue-800 to-purple-600 text-white px-4 sm:px-7 py-2 sm:py-3 rounded-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all">
+              Login
+            </button>
+          </Link>
         </div>
       </div>
     </nav>

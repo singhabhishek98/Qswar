@@ -28,6 +28,7 @@ const AdminLogin = () => {
           const token = data.access_token || data.token;
           localStorage.setItem('token', token);
           localStorage.setItem('user', JSON.stringify(data.user || { email: formData.email }));
+          localStorage.setItem('loginMessage', data.message || 'Login successful!');
           navigate('/admin/dashboard');
         } else {
           setError('Login failed');
